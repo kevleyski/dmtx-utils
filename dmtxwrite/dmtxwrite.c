@@ -196,7 +196,7 @@ HandleArgs(UserOptions *opt, int *argcp, char **argvp[])
             break;
          case 'm':
             err = StringToInt(&opt->marginSize, optarg, &ptr);
-            if(err != DmtxPass || opt->marginSize <= 0 || *ptr != '\0')
+            if(err != DmtxPass || opt->marginSize < 0 || *ptr != '\0')
                FatalError(EX_USAGE, _("Invalid margin size specified \"%s\""), optarg);
             break;
          case 'e':
@@ -384,7 +384,7 @@ OPTIONS:\n"), programName, programName);
   -m, --margin=N              margin size (in pixels)\n"));
       fprintf(stderr, _("\
   -e, --encoding=[abcet8x]    primary encodation scheme\n\
-            a = ASCII [default]   b = Best optimized [beta]\n\
+            a = ASCII             b = Best optimized [default]\n\
             c = C40               e = EDIFACT\n\
             t = Text              8 = Base 256\n\
             x = X12\n"));
